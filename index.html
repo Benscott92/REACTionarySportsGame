@@ -15,52 +15,79 @@
     <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     
     <script type="text/babel">
+        function App (props) {
+            return (
+                <div>
+                    <Game venue='Digital World' team1='Gabumons' team2="Agumons" />
+                </div>
+            )
+        }
+
+        function Game (props){
+            let venue = props.venue
+
+            return (
+                <div className='game'>
+                    <h1>Welcome To: {venue}</h1>
+                    <div className='team-space'>
+                        <Team name = {props.team1 || 'Home'} logo = 'https://cdn.pixabay.com/photo/2017/03/13/21/09/ring-of-fire-2141192_1280.jpg' />
+                        <Team name = {props.team2 || 'Visitors'} logo = 'https://cdn.pixabay.com/photo/2017/05/17/11/05/heart-2320561_960_720.png' />
+                    </div>
+                </div>)
+        }
+
         class Team extends React.Component{
             constructor(props){
                 super(props)
+
                 
                 this.state = {
                     name: this.props.name,
                     logo: this.props.logo,
                     shots: 0,
                     score: 0,
+                    shotPercentage: 0
                 }
             }
 
             shoot = (event) => {
+                let shotAudio = new Audio('./hockeystick.mp3')
                 if(Math.random() > .5){
                     this.setState((state, props) => (
                         {score: state.score + 1}
                     ))
                 }
-                return this.setState((state, props) => (
+                shotAudio.play()
+                this.setState((state, props) => (
                     {shots: state.shots + 1}
+                ))
+                return this.setState((state, props) => (
+                    {shotPercentage: Number(state.score / state.shots) * 100 || 0}
                 ))
             }
 
             render(){
-
+                let className = 'hide'
+                if(this.state.shots != 0){
+                    className = 'show'
+                }
+                
                 return(
                     <div className='team'>
                         <h1>{this.state.name} </h1>
                         <img src={this.state.logo} alt="team-logo" />
                         <h3> Score: <span className = 'score'>{this.state.score} </span> Shots: <span className = 'shots'>{this.state.shots} </span> </h3>
-                        
-                        <button onClick= {this.shoot}>Shoot</button>
+                        <h3 className={className}>Shot Percentage: <span className='shotpercent'>{this.state.shotPercentage}%</span></h3>
+                        <button onClick= {this.shoot} >Shoot</button>
                     </div>
                 )
             }
         }
 
-        let page = (
-            <div className='team-space'>
-                <Team name = 'Gabumons' logo = 'https://cdn.pixabay.com/photo/2017/03/13/21/09/ring-of-fire-2141192_1280.jpg' />
-                <Team name = 'Agumons' logo = 'https://cdn.pixabay.com/photo/2017/05/17/11/05/heart-2320561_960_720.png' />
-            </div>
-        )
+        
     
         ReactDOM.render(
-            page,
+            <App />,
             document.getElementById('root')
         )
 

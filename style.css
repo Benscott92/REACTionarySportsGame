@@ -28,3 +28,14 @@ img{
     padding-left:3px;
     padding-right: 3px;
 }
+
+.hide{
+    visibility: hidden;
+}
+
+.show{
+    visibility: visible;
+}
+.game{
+    text-align: center;
+}
