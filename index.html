@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>React, to Sports!</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        
+        <div id="root"></div>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    
+    <script type="text/babel">
+        class Team extends React.Component{
+            constructor(props){
+                super(props)
+                
+                this.state = {
+                    name: this.props.name,
+                    logo: this.props.logo,
+                    shots: 0,
+                    score: 0,
+                }
+            }
+
+            shoot = (event) => {
+                if(Math.random() > .5){
+                    this.setState((state, props) => (
+                        {score: state.score + 1}
+                    ))
+                }
+                return this.setState((state, props) => (
+                    {shots: state.shots + 1}
+                ))
+            }
+
+            render(){
+
+                return(
+                    <div className='team'>
+                        <h1>{this.state.name} </h1>
+                        <img src={this.state.logo} alt="team-logo" />
+                        <h3> Score: <span className = 'score'>{this.state.score} </span> Shots: <span className = 'shots'>{this.state.shots} </span> </h3>
+                        
+                        <button onClick= {this.shoot}>Shoot</button>
+                    </div>
+                )
+            }
+        }
+
+        let page = (
+            <div className='team-space'>
+                <Team name = 'Gabumons' logo = 'https://cdn.pixabay.com/photo/2017/03/13/21/09/ring-of-fire-2141192_1280.jpg' />
+                <Team name = 'Agumons' logo = 'https://cdn.pixabay.com/photo/2017/05/17/11/05/heart-2320561_960_720.png' />
+            </div>
+        )
+    
+        ReactDOM.render(
+            page,
+            document.getElementById('root')
+        )
+
+    </script>
+    </body>
+</html>

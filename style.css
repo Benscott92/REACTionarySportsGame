@@ -1,0 +1,30 @@
+*{
+    box-sizing: border-box;
+}
+
+.team-space{
+    display: flex;
+}
+
+.team{
+    width: 50%;
+    text-align: center;
+}
+
+img{
+    height: 100px;
+}
+
+.score{
+    background: grey;
+    color: azure;
+    padding-left:3px;
+    margin-right: 3px;
+}
+
+.shots{
+    background: grey;
+    color: azure;
+    padding-left:3px;
+    padding-right: 3px;
+}
