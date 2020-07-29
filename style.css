@@ -4,15 +4,35 @@
 
 .team-space{
     display: flex;
+    padding-left: 125px;
 }
 
 .team{
-    width: 50%;
+    width: 30%;
     text-align: center;
+    background: azure;
+    border: 3px solid goldenrod;
+    border-radius: 10px;
+}
+.Scoreboard{
+    width: 30%;
+    display: flex;
+    background: rgba(128, 128, 128, 0.473);
+    border: 3px solid white;
+    margin: 10px;
+    border-radius: 10px;
+}
+.teamscore{
+    text-align: center;
+    width: 50%;
+    color: rebeccapurple;
+    font-family: 'Shojumaru', cursive;
+    text-shadow: white 1px 0 10px;
 }
 
 img{
     height: 100px;
+    
 }
 
 .score{
@@ -38,4 +58,22 @@ img{
 }
 .game{
     text-align: center;
+}
+body{
+    background-image: url(https://cdn.pixabay.com/photo/2016/07/20/19/42/wallpaper-1531107_1280.jpg) ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+
+.title{
+    background: rgba(255, 255, 255, 0.473);
+    width: fit-content;
+    margin: auto;
+    padding: 15px;
+    border-radius: 15px;
+    border: 7px solid silver;
+}
+button{
+    margin: 5px;
 }
